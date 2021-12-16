@@ -7,9 +7,9 @@
 
     $article = new Article();
 
-    echo $article->create(["title" => "title", "autor" => "autor", "date_added" => "01.01.1980"]);
+    // echo $article->create(["title" => "title", "autor" => "autor", "date_added" => "01.01.1980"]);
     
-    // var_dump($article);
+    var_dump($article->index());
 
     // var_dump($article->view(1));
 ?>

@@ -40,6 +40,12 @@
             return 1;
         }
 
+
+        public function index()
+        {
+            return self::getList();
+        }
+
         public function update()
         {
 
