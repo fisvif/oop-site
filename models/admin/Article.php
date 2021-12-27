@@ -8,8 +8,6 @@
 
     class Article extends BaseModel implements IModel
     {
-        public $file;
-
         public function __construct()
         {
             $this->file = new File('article');
@@ -29,16 +27,7 @@
             return $this->errors;
         }
 
-        public function setId()
-        {
-            $articles = $this->getList();//список елеиентів 
-            $count = count($articles) - 1;// порядковий номер
-
-            if (isset($articles[$count])) {// отримали id останього елемента
-                return $articles[$count]['id'] + 1;
-            }
-            return 1;
-        }
+        
 
 
         public function index()
@@ -61,7 +50,7 @@
             return self::getList();
         }
         
-        public function getList()
+        public static function getList()
         {
             $list = new self();
             return $list->file->read();

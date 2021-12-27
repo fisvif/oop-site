@@ -28,11 +28,10 @@
             $list = file(self::DIR_PATH.$this->name.'.txt');
 
             foreach($list as $item){
-                if ($item != '') {
+                // if ($item != '') {
                     $this->data_list[] = unserialize($item);
-                }
+                // }
             }
-            
             return $this->date_list;
         }
         

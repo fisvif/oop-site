@@ -3,13 +3,14 @@
 
     abstract class BaseModel
     {
-        private $id;
-        private $date_added;
-        private $title;
-        private $description;
-        private $image;
-        private $author;
-        private $errors = [];
+        protected $file;
+        protected $id;
+        protected $date_added;
+        protected $title;
+        protected $description;
+        protected $image;
+        protected $author;
+        protected $errors = [];
         
         public function __set($property, $value)
         {
@@ -36,7 +37,7 @@
         }
 
         abstract public function view($id);
-        abstract public function getList();
+        abstract public static function getList();
         
         public function validateTitle($title)
         {
@@ -73,6 +74,22 @@
             } else {
                 $this->errors['description'] = 'Опис не може бути пустим';
             }
+        }
+
+        public function setId()
+        {
+            $list = $this->file->read();
+
+            if (count($list) == 0) {
+                $this->id = 1;
+            }
+
+            $count = count($list) - 1;// порядковий номер
+            if (isset($list[$count])) {// отримали id останього елемента
+                $this->id = $list[$count]->id + 1;
+                return $this->id;
+            }
+            return false;
         }
 
     //     public function validateImage($image)
